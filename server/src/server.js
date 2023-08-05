@@ -5,7 +5,6 @@ const app = express();
 const morgan = require('morgan');
 //application level middleware
 app.use(morgan('dev'));
-
 /**
  * Middleware 
  * Application level middleware
@@ -39,6 +38,7 @@ app.get('/api/user', isUserLoggedIn,(req,res)=>{
         message: "Middleware is working perfectly!"
     });
 });
+
 
 
   
