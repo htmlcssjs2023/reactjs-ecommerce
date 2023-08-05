@@ -3,41 +3,45 @@ const app = express();
 
 // use morgan as development purpose.
 const morgan = require('morgan');
+//application level middleware
 app.use(morgan('dev'));
 
-// create testing porpuse route / N point.
-app.get('/test', (req, res)=>{
-    res.status(200).send(
-        {
-            message:'Get: API is working properly'
-        }
-    );
-});
-// post
-app.get('/test', (req, res)=>{
-    res.status(200).send(
-        {
-            message:'POST: API is working properly'
-        }
-    );
-});
-// put
-app.get('/test', (req, res)=>{
-    res.status(200).send(
-        {
-            message:'PUT: API is working properly'
-        }
-    );
-});
-//patch
-app.get('/test', (req, res)=>{
-    res.status(200).send(
-        {
-            message:'Patch: API is working properly'
-        }
-    );
+/**
+ * Middleware 
+ * Application level middleware
+ * Router level 
+ * Error handling middleware
+ * Built In middleware
+ * Third party middleware
+ */
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true }));
+
+// Router Middleware
+const isUserLoggedIn = (req, res, next)=>{
+    // Information can access those user who loggedin.
+    const login = true;
+    if(login){
+        req.body.id = 101;
+        console.log("Your can access this info");
+        next()
+    }
+    else{
+        res.status(401).send({
+            message:"You are not valid user!"
+        });
+    }
+}
+app.get('/api/user', isUserLoggedIn,(req,res)=>{
+    console.log(`welcome to app! your id:  ${req.body.id}`);
+    res.status(200).send({
+        message: "Middleware is working perfectly!"
+    });
 });
 
+
+  
 // server runer 
 app.listen(3001, ()=>{
     console.log(`Express server is runing at http://localhost:3001`);
