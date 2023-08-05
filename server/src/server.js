@@ -40,6 +40,12 @@ app.get('/api/user', isUserLoggedIn,(req,res)=>{
     });
 });
 
+// client side error handling.
+app.use((req,res,next)=>{
+    res.status(404).json({
+        message: "404 error happend"
+    })
+});
 
 
   
