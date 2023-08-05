@@ -11,3 +11,7 @@
 4. HTTP Rquest & Response
 => Create N point / create route
 5. nodemon and morgan package.
+6. API testing with postman
+7. Middleware & type of Middleware
+8. Exprss Error handling middleware
+
