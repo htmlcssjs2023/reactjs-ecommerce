@@ -3,6 +3,7 @@ const app = express();
 
 // use morgan as development purpose.
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 //application level middleware
 app.use(morgan('dev'));
 /**
@@ -14,8 +15,8 @@ app.use(morgan('dev'));
  * Third party middleware
  */
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true }));
 
 // Router Middleware
 const isUserLoggedIn = (req, res, next)=>{
