@@ -45,7 +45,14 @@ app.use((req,res,next)=>{
     res.status(404).json({
         message: "404 error happend"
     })
+    next()
 });
+
+// server side error handling
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).send('something went wrong!')
+  })
 
 
   
