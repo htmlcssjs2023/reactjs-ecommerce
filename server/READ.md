@@ -10,8 +10,9 @@
 
 4. HTTP Rquest & Response
 => Create N point / create route
-5. nodemon and morgan package.
-6. API testing with postman
+5. nodemon and morgan package. -> nodemon and morgan package
+6. API testing with postman -> post man
 7. Middleware & type of Middleware
-8. Exprss Error handling middleware
-
+8. Express error handling middleware
+9. How to handle http error
+10. Environment variable & .gitignore -> nodegitignore, dotenv package

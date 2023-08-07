@@ -1,7 +1,9 @@
 const app = require('./app');
+const {serverPort} = require('./secret');
+
 
 
 // server runer 
-app.listen(3001, ()=>{
-    console.log(`Express server is runing at http://localhost:3001`);
+app.listen(serverPort,()=>{
+    console.log(`Express server is runing at http://localhost:${serverPort}`);
 })

@@ -1,15 +1,25 @@
 const express = require('express');
-const app = express();
-
-// use morgan as development purpose.
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const createError = require('http-errors');
-//application level middleware
-app.use(morgan('dev'));
+const xssClean = require('xss-clean');
+const rateLimit = require('express-rate-limit');
 
+const rateLimiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // One minute
+    max:5,
+    message:"Too many request from this API, Please try later"
+});
+
+const app = express();
+
+//application level middleware
+app.use(rateLimiter);
+app.use(xssClean());
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true }));
+
 
 app.get('/api/user', (req,res)=>{
     console.log('Welcome to app !');
